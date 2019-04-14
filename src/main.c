@@ -2,8 +2,11 @@
 #include "../header/yshell.h"
 
 #define MAX_BUF_LEN 100
+#define MAX_TOK_LEN 10
 
 void get_current_dir(char *usr_name, char *shell_dir);
+// Parse module
+void parse(char *input, char*tokens[]);
 
 int main() {
 	int should_run = 1;    /* flag to determine when to exit program*/
@@ -49,4 +52,17 @@ void get_current_dir(char *usr_name, char *shell_dir) {
 		strcpy(shell_dir, usr_dir);
 
 	free(usr_dir);
+}
+
+void parse(char *input, char *tokens[]) {
+		char *token = NULL;
+		int i = 0;
+
+		token = strtok(input, " \n");
+		while(token != NULL) {
+				tokens[i] = (char *)malloc(sizeof(MAX_TOK_LEN));
+				strcpy(tokens[i], token);
+				token = strtok(NULL, " \n");
+				++i;
+		}
 }
