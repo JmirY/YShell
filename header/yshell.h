@@ -6,5 +6,4 @@
 #include <pwd.h>
 
 // JMIRY
-// #include "parser.h"
 // #include "executer.h"
