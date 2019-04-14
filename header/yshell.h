@@ -5,6 +5,6 @@
 #include <string.h>
 #include <pwd.h>
 
-// lib. made by JMIRY
-#include "parser.h"
-#include "executer.h"
+// JMIRY
+// #include "parser.h"
+// #include "executer.h"
