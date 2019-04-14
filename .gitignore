@@ -1,3 +1,4 @@
 # YShell .gitignore file
 
 /src/main
+.*.swp
