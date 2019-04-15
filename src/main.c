@@ -7,6 +7,7 @@
 void print_token(char *tokens[]);    /* debug */
 void get_current_dir(char *usr_name, char *shell_dir);
 void parse(char *input, char*tokens[]);      /* Parse module */
+void execute(char *tokens[]);    /* Executer module */
 
 int main() {
 	int should_run = 1;    /* flag to determine when to exit program*/
