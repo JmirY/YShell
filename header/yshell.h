@@ -5,6 +5,6 @@
 #include <unistd.h>
 #include <string.h>
 #include <pwd.h>
+#include <dirent.h>
 
-// JMIRY
-#include "commands.h"
+void command_ls();

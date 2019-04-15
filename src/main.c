@@ -1,5 +1,5 @@
 // main.c
-#include "../header/yshell.h"
+#include "yshell.h"
 
 #define MAX_BUF_LEN 100
 #define MAX_TOK_LEN 10
