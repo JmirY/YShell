@@ -1,4 +1,5 @@
 # YShell .gitignore file
 
-/src/main
+yshell
 .*.swp
+*.o
