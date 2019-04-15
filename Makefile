@@ -1,11 +1,11 @@
 CC = gcc
 TARGET = yshell
 
-$(TARGET) : ./src/main.o ./src/command_ls.o
+$(TARGET) : ./src/main.o ./src/cmd_ls.o
 	$(CC) -o $@ $^ 
 
 main.o : ./src/main.c
 	$(CC) -c -o $@ $^ 
 
-command_ls.o : ./src/command_ls.c
+cmd_ls.o : ./src/cmd_ls.c
 	$(CC) -c -o $@ $^

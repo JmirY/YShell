@@ -1,8 +1,8 @@
-// command_ls.c
+// cmd_ls.c
 #include "yshell.h"
 #define MAX_BUF_LEN 200
 
-void command_ls() {
+void cmd_ls() {
 	char *current_dir = (char *)malloc(sizeof(char)*MAX_BUF_LEN);
 	DIR *dir = NULL;
 	struct dirent *entry = NULL;

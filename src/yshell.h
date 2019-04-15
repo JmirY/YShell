@@ -7,4 +7,4 @@
 #include <pwd.h>
 #include <dirent.h>
 
-void command_ls();
+void cmd_ls();
