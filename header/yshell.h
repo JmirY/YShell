@@ -7,4 +7,4 @@
 #include <pwd.h>
 
 // JMIRY
-// #include "commands.h"
+#include "commands.h"
