@@ -3,11 +3,13 @@
 
 #define MAX_BUF_LEN 100
 #define MAX_TOK_LEN 10
+#define DIY_CMD_NUM 1
 
 void print_token(char *tokens[]);    /* debug */
 void get_current_dir(char *usr_name, char *shell_dir);
 void parse(char *input, char*tokens[]);      /* Parse module */
-void execute(char *tokens[]);    /* Executer module */
+void init_cmd_arr(Cmd_entry cmd_arr[]);
+void execute(char *tokens[], Cmd_entry cmd_arr[]);    /* Executer module */
 
 int main() {
 	int should_run = 1;    /* flag to determine when to exit program*/
@@ -18,6 +20,11 @@ int main() {
 	struct passwd *user = getpwuid(id);
 	char *usr_name = user->pw_name;
 
+	// create array of command-entry struct
+	Cmd_entry cmd_arr[DIY_CMD_NUM] = {0};
+	init_cmd_arr(cmd_arr);
+
+	system("clear");
 	while(should_run) {
 		char *shell_dir = (char *)malloc(sizeof(char)*MAX_BUF_LEN);
 		get_current_dir(usr_name, shell_dir);
@@ -32,6 +39,7 @@ int main() {
 			break;
 		parse(input, args);
 		print_token(args);
+		execute(args, cmd_arr);
 
 		blank_input: ;
 		free(shell_dir);
@@ -76,5 +84,19 @@ void parse(char *input, char *tokens[]) {
 			strcpy(tokens[i], token);
 			token = strtok(NULL, " \n");
 			++i;
+	}
+}
+
+void init_cmd_arr(Cmd_entry cmd_arr[]) {
+	Cmd_entry cmd_ls_entry = {.cmd_name = "ls", .cmd_fp = cmd_ls};
+
+	cmd_arr[0] = cmd_ls_entry;
+}
+
+void execute(char *tokens[], Cmd_entry cmd_arr[]) {
+	int i = 0;
+	for(i = 0; i < DIY_CMD_NUM; ++i) {
+		if(strcmp(tokens[0], cmd_arr[i].cmd_name) == 0)
+			cmd_arr[i].cmd_fp(tokens+1);
 	}
 }

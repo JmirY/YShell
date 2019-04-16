@@ -9,9 +9,9 @@
 
 #define MAX_NAME_LEN 10
 
-struct cmd_entry {
+typedef struct Cmd_entry {
 	char cmd_name[MAX_NAME_LEN];
 	void (*cmd_fp)();
-}
+} Cmd_entry;
 
 void cmd_ls();

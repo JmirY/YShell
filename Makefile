@@ -9,3 +9,7 @@ main.o : ./src/main.c
 
 cmd_ls.o : ./src/cmd_ls.c
 	$(CC) -c -o $@ $^
+
+clean :
+	rm src/*.o
+	rm $(TARGET)
