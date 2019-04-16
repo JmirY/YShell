@@ -7,5 +7,6 @@ Hanyang Univ. ERICA campus
 System programming course  
 Term project  
 ***  
-### 구현 명령어  
-- ls
+### 명령어 목록  
+- exit : 쉘을 종료합니다.
+- ls : 현 디렉토리 파일들의 이름을 출력합니다.
