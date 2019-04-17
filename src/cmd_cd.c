@@ -13,18 +13,24 @@ void cmd_cd(char *tokens[]) {
 
 	//printf("dest before cat: %s\n", dest);  /* debug */
 
-	if(tokens[0] == NULL) {
+	if(tokens[0] == NULL) { /* cd */
 		strcat(dest, "/home/");
 		strcat(dest, usr_name);
 	}
-	else if( strcmp(tokens[0], ".") == 0 ) {
+	else if( strcmp(tokens[0], ".") == 0 ) { /* cd . */
 		strcpy(dest, cur);	
 	}
-	else if( strcmp(tokens[0], "..") == 0 ) {
-		char *ptr = strrchr(cur, '/');
-		*ptr = '\0';
-		strcpy(dest, cur);	
+	else if( strcmp(tokens[0], "..") == 0 ) { /* cd .. */
+		if( cur == strrchr(cur, '/') )  /* parent dir. is root dir. */
+			strcpy(dest, "/");
+		else {
+			char *ptr = strrchr(cur, '/');
+			*ptr = '\0';
+			strcpy(dest, cur);	
+		}
 	}
+	else if( tokens[0] == strchr(tokens[0], '/') )  /* absolute path */
+		strcpy(dest, tokens[0]);
 	else {
 		strcat(dest, cur);
 		strcat(dest, "/");
