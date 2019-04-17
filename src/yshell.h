@@ -14,4 +14,5 @@ typedef struct Cmd_entry {
 	void (*cmd_fp)();
 } Cmd_entry;
 
-void cmd_ls();
+void cmd_ls(char *[]);
+void cmd_cd(char *[]);
