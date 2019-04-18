@@ -3,19 +3,20 @@
 
 #define MAX_BUF_LEN 100
 #define MAX_TOK_LEN 10
-#define DIY_CMD_NUM 2
+#define DIY_CMD_NUM 3
 
 void print_token(char *tokens[]);    /* debug */
 void get_current_dir(char *usr_name, char *shell_dir);
-void parse(char *input, char*tokens[]);      /* Parse module */
+int parse(char *input, char*tokens[]);      /* Parse module */
 void init_cmd_arr(Cmd_entry cmd_arr[]);
-void execute(char *tokens[], Cmd_entry cmd_arr[]);    /* Executer module */
+void execute(int num_tokens, char *tokens[], Cmd_entry cmd_arr[]);    /* Executer module */
 
 char *usr_name;    /* for external use */
 
 int main() {
 	int should_run = 1;    /* flag to determine when to exit program*/
 	char *args[MAX_BUF_LEN] = {NULL};    /* user input arguments */
+	int argc = 0;
 
 	// get user name
 	uid_t id = getuid();
@@ -39,9 +40,8 @@ int main() {
 			goto blank_input;
 		else if (strcmp(input, "exit\n") == 0)
 			break;
-		parse(input, args);
-		//print_token(args);    /* debug */
-		execute(args, cmd_arr);
+		argc = parse(input, args);
+		execute(argc, args, cmd_arr);
 
 		blank_input: ;
 		free(shell_dir);
@@ -76,7 +76,7 @@ void get_current_dir(char *usr_name, char *shell_dir) {
 	free(usr_dir);
 }
 
-void parse(char *input, char *tokens[]) {
+int parse(char *input, char *tokens[]) {
 	char *token = NULL;
 	int i = 0;
 
@@ -87,20 +87,24 @@ void parse(char *input, char *tokens[]) {
 			token = strtok(NULL, " \n");
 			++i;
 	}
+
+	return i;
 }
 
 void init_cmd_arr(Cmd_entry cmd_arr[]) {
 	Cmd_entry cmd_ls_entry = {.cmd_name = "ls", .cmd_fp = cmd_ls};
 	Cmd_entry cmd_cd_entry = {.cmd_name = "cd", .cmd_fp = cmd_cd};
+	Cmd_entry cmd_cp_entry = {.cmd_name = "cp", .cmd_fp = cmd_cp};
 
 	cmd_arr[0] = cmd_ls_entry;
 	cmd_arr[1] = cmd_cd_entry;
+	cmd_arr[2] = cmd_cp_entry;
 }
 
-void execute(char *tokens[], Cmd_entry cmd_arr[]) {
+void execute(int num_tokens, char *tokens[], Cmd_entry cmd_arr[]) {
 	int i = 0;
 	for(i = 0; i < DIY_CMD_NUM; ++i) {
 		if(strcmp(tokens[0], cmd_arr[i].cmd_name) == 0)
-			cmd_arr[i].cmd_fp(tokens+1);
+			cmd_arr[i].cmd_fp(num_tokens, tokens+1);
 	}
 }
