@@ -11,8 +11,6 @@ void cmd_cd(char *tokens[]) {
 	char *cur = (char *)malloc(sizeof(char)*MAX_BUF_LEN);  /* current dir. */
 	getcwd(cur, MAX_BUF_LEN);
 
-	//printf("dest before cat: %s\n", dest);  /* debug */
-
 	if(tokens[0] == NULL) { /* cd */
 		strcat(dest, "/home/");
 		strcat(dest, usr_name);
@@ -36,8 +34,6 @@ void cmd_cd(char *tokens[]) {
 		strcat(dest, "/");
 		strcat(dest, tokens[0]);
 	}
-
-	//printf("%s\n", dest);    /* debug */
 
 	if(chdir(dest) == -1)
 		printf("ERROR@chdir()\n");
