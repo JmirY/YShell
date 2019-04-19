@@ -1,15 +1,15 @@
 // cmd_cd.c
 #include "yshell.h"
 
-#define MAX_BUF_LEN 100
+#define BUF_SIZE 100
 
 extern char *usr_name;
 
-void cmd_cd(char *tokens[]) {
-	char *dest = (char *)malloc(sizeof(char)*MAX_BUF_LEN);    /* destination dir. */
-	memset(dest, 0, sizeof(char)*MAX_BUF_LEN);
-	char *cur = (char *)malloc(sizeof(char)*MAX_BUF_LEN);  /* current dir. */
-	getcwd(cur, MAX_BUF_LEN);
+void cmd_cd(int num_tokens, char *tokens[]) {
+	char *dest = (char *)malloc(sizeof(char)*BUF_SIZE);    /* destination dir. */
+	char *cur = (char *)malloc(sizeof(char)*BUF_SIZE);  /* current dir. */
+	memset(dest, 0, sizeof(char)*BUF_SIZE);
+	getcwd(cur, BUF_SIZE);
 
 	if(tokens[0] == NULL) { /* cd */
 		strcat(dest, "/home/");
