@@ -31,7 +31,11 @@ int main() {
 	while(should_run) {
 		char *shell_dir = (char *)malloc(sizeof(char)*MAX_BUF_LEN);
 		get_current_dir(usr_name, shell_dir);
-		printf("YShell:%s$ ", shell_dir);
+		printf("%c[1;35m", 27);
+		printf("YShell:");
+		printf("%c[1;36m", 27);
+		printf("%s$ ", shell_dir);
+		printf("%c[0m", 27);
 		fflush(stdout);
 
 		char *input = (char *)malloc(sizeof(char)*MAX_BUF_LEN);

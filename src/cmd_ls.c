@@ -1,7 +1,7 @@
 // cmd_ls.c
 #include "yshell.h"
 
-void cmd_ls(int num_token, char *tokens[]) {
+void cmd_ls(int num_tokens, char *tokens[]) {
 	char *current_dir = (char *)malloc(sizeof(char)*BUF_SIZE);
 	DIR *dir = NULL;
 	struct dirent *entry = NULL;
