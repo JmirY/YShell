@@ -28,7 +28,22 @@ void cmd_ls(int num_token, char *tokens[]) {
 			entry = readdir(dir);
 			continue;
 		}
+		switch(entry->d_type) {  /* set text color depanding on d_type */
+			case 4:    /* directory file */
+				printf("%c[1;34m", 27);
+				break;
+			case 2:    /* character device file */
+				printf("%c[1;33m", 27);
+				break;
+			case 6:    /* block device file */
+				printf("%c[1;33m", 27);
+				break;
+			case 10:    /* link file */
+				printf("%c[1;36m", 27);
+				break;
+		}
 		printf("%s\t", entry->d_name);
+		printf("%c[0m", 27);  /* set text color to default */
 		entry = readdir(dir);
 	}
 	printf("\n");
