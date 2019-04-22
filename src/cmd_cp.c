@@ -1,8 +1,6 @@
 // cmd_cp.c
 #include "yshell.h"
 
-#define BUF_SIZE 100
-
 void cmd_cp(int num_tokens, char *tokens[]) 
 {
 	if(num_tokens > 3) {

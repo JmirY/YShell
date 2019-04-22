@@ -1,8 +1,6 @@
 // cmd_cd.c
 #include "yshell.h"
 
-#define BUF_SIZE 100
-
 extern char *usr_name;
 
 void cmd_cd(int num_tokens, char *tokens[]) {
