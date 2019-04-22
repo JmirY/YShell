@@ -11,6 +11,7 @@
 #include <fcntl.h>
 
 #define MAX_NAME_LEN 10
+#define BUF_SIZE 100
 
 typedef struct Cmd_entry {
 	char cmd_name[MAX_NAME_LEN];

@@ -1,6 +1,5 @@
 // cmd_ls.c
 #include "yshell.h"
-#define BUF_SIZE 100
 
 void cmd_ls(int num_token, char *tokens[]) {
 	char *current_dir = (char *)malloc(sizeof(char)*BUF_SIZE);
