@@ -9,6 +9,10 @@ void cmd_cd(int num_tokens, char *tokens[]) {
 	memset(dest, 0, sizeof(char)*BUF_SIZE);
 	getcwd(cur, BUF_SIZE);
 
+	if(num_tokens > 2) {
+		printf("ERROR@cmd_cd():too many args!\n");
+		return;
+	}
 	if(tokens[0] == NULL) { /* cd */
 		strcat(dest, "/home/");
 		strcat(dest, usr_name);
@@ -34,7 +38,7 @@ void cmd_cd(int num_tokens, char *tokens[]) {
 	}
 
 	if(chdir(dest) == -1)
-		printf("ERROR@chdir()\n");
+		printf("ERROR@chdir():chdir() failed!\n");
 
 	free(dest);
 	free(cur);
