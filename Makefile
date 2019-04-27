@@ -3,6 +3,7 @@ TARGET = yshell
 
 $(TARGET) : ./src/main.o ./src/cmd_ls.o ./src/cmd_cd.o ./src/cmd_cp.o
 	$(CC) -o $@ $^ 
+	strip $(TARGET)
 
 main.o : ./src/main.c
 	$(CC) -c -o $@ $^ 
