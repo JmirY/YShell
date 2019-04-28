@@ -5,7 +5,6 @@
 #define MAX_TOK_LEN 10
 #define DIY_CMD_NUM 3
 
-void print_token(char *tokens[]);    /* debug */
 void get_current_dir(char *usr_name, char *shell_dir);
 int parse(char *input, char*tokens[]);      /* Parse module */
 void init_cmd_arr(Cmd_entry cmd_arr[]);
@@ -56,14 +55,6 @@ int main() {
 	return 0;
 }
 
-void print_token(char *tokens[]) {
-	int i = 0;
-	while(tokens[i] != NULL)  {
-		printf("%s\n", tokens[i]);
-		++i;
-	}
-}
-
 void get_current_dir(char *usr_name, char *shell_dir) {
 	/* get current dir. */
 	char *usr_dir = (char *)malloc(sizeof(char)*MAX_BUF_LEN);
@@ -71,8 +62,8 @@ void get_current_dir(char *usr_name, char *shell_dir) {
 
 	/* replace "home/" to "~/" */
 	if (strstr(usr_dir, usr_name) != NULL) {
-		strcpy(shell_dir, "~/");
-		strcat(shell_dir, strstr(usr_dir, usr_name));
+		strcpy(shell_dir, "~");
+		strcat(shell_dir, strstr(usr_dir, usr_name)+strlen(usr_name));
 	}
 	else
 		strcpy(shell_dir, usr_dir);
