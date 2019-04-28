@@ -26,8 +26,8 @@ void cmd_ls(int num_tokens, char *tokens[]) {
 		return;
 	}
 
-	entry = readdir(dir);
-	while(entry != NULL) {
+	entry = readdir(dir);	
+	while(entry != NULL) {  /* print directory entries */
 		if(flg_show_all == 0 && entry->d_name[0] == '.') {
 			entry = readdir(dir);
 			continue;
@@ -46,7 +46,7 @@ void cmd_ls(int num_tokens, char *tokens[]) {
 				printf("%c[1;36m", 27);
 				break;
 		}
-		printf("%s\t", entry->d_name);
+		printf("%-s\t", entry->d_name);
 		printf("%c[0m", 27);  /* set text color to default */
 		entry = readdir(dir);
 	}
