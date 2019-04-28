@@ -5,7 +5,6 @@
 #define MAX_TOK_LEN 10
 #define DIY_CMD_NUM 3
 
-void print_token(char *tokens[]);    /* debug */
 void get_current_dir(char *usr_name, char *shell_dir);
 int parse(char *input, char*tokens[]);      /* Parse module */
 void init_cmd_arr(Cmd_entry cmd_arr[]);
@@ -54,14 +53,6 @@ int main() {
 	}
 
 	return 0;
-}
-
-void print_token(char *tokens[]) {
-	int i = 0;
-	while(tokens[i] != NULL)  {
-		printf("%s\n", tokens[i]);
-		++i;
-	}
 }
 
 void get_current_dir(char *usr_name, char *shell_dir) {
